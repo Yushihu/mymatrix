@@ -21,17 +21,22 @@ void init_rand_matrix(matrix* m){
     }
 }
 
+void destory_matrix(matrix* m){
+    assert(m->field);
+    free(m->field);
+}
+
 void print_matrix(matrix* m){
     UINT64 index;
     UINT32 eol = m->size - 1;
     UINT64 square = pow(m->size, 2);
     for(index = 0; index < square; index++){
         if((index % m->size) == 0){
-            printf("|");
+            printf("");
             printf("%4llu ", m->field[index]);
         }else if((index % m->size) == eol){
             printf("%4llu", m->field[index]);
-            printf("|\n");
+            printf("\n");
 
         }else{
             printf("%4llu ", m->field[index]);
@@ -81,18 +86,19 @@ INT64 determinant(matrix* m){
     // UINT32 choice;
     INT64 ret = 0;
     calculate_determinant(m, occupying, 0, 1, &ret);
-    printf("%lld\n", ret);
+    // printf("%lld\n", ret);
+    free(occupying);
     return ret;
 }
 
-int main(int argc, char* argv[]){
-    matrix m;
-    if(argc != 2){
-        exit(1);
-    }
-    m.size = atoi(argv[1]);
-    init_rand_matrix(&m);
-    print_matrix(&m);
-    determinant(&m);
-    return 0;
-}
+// int main(int argc, char* argv[]){
+//     matrix m;
+//     if(argc != 2){
+//         exit(1);
+//     }
+//     m.size = atoi(argv[1]);
+//     init_rand_matrix(&m);
+//     print_matrix(&m);
+//     determinant(&m);
+//     return 0;
+// }

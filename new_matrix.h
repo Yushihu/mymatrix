@@ -22,6 +22,7 @@ typedef struct{
 }matrix;
 
 void init_rand_matrix(matrix* m);
+void destory_matrix(matrix* m);
 void print_matrix(matrix* m);
 INT64 determinant(matrix* m);
 void calculate_determinant(matrix* m, BOOL* occupying, UINT32 col, INT64 ret, INT64* sum);
